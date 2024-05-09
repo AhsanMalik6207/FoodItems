@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, { useState } from 'react'
 // import FoodItems from './component/FoodItems';
 import FoodItems from './component/FoodItems';
 import ErrorMessage from './component/ErrorMessage';
@@ -9,13 +9,27 @@ import Container from './component/Container';
 import FoodInput from './component/FoodInput';
 function App() {
   // let foodItems = []
-  let foodItems = ["Vegitalbe", "Bread", "Daal", "Rice", "Fish", "salt", "Mutton"];
+  // let foodItems = ["Vegitalbe", "Bread", "Daal", "Rice", "Fish", "salt", "Mutton"];
+
+  // let [textTOShow, setTextState] = useState("Food item Enter by user");
+  let [foodItems, setFoodItems] = useState(["Vegitalbe", "Bread", "Daal", "Rice", "Fish"])
+  const handleOnChange = (event) => {
+    if (event.key === "Enter") {
+      let newFoodItem = event.target.value;
+      console.log("Food value entered is " + newFoodItem);
+      let newItems = [...foodItems, newFoodItem];
+      setFoodItems(newItems)
+    }
+    // setTextState(event.target.value)
+    // console.log(textTOShow)
+  }
   return (
 
     <React.Fragment>
       <Container>
         <FoodName />
-        <FoodInput />
+        <FoodInput handleOn={handleOnChange} />
+        {/* <p>{textTOShow}</p> */}
         <FoodItems items={foodItems} />
         <ErrorMessage items={foodItems} />
       </Container>

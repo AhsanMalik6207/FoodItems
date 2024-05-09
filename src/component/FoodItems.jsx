@@ -6,6 +6,7 @@ let FootItems = ({ items }) => {
         <Item
           key={item}
           foodItem={item}
+          handleBuyButton={() => console.log(`${item} beign bought `)}
         />
       ))}
     </ul>
